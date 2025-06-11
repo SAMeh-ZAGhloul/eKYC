@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ekyc:
+    build: .
+    volumes:
+      - .:/app
+      - ./data:/app/data  # For persistent data storage
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DISPLAY=host.docker.internal:0  # macOS display setting
+      - QT_X11_NO_MITSHM=1  # Fix for X11 display issues
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Note: Camera access on macOS requires special handling
+    # For macOS, you may need to use a different approach for camera access
+    # such as using a virtual camera or sharing the camera through VNC
+    restart: unless-stopped

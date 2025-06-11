@@ -1,0 +1,31 @@
+__pycache__/
+.DS_Store
+dlib/
+
+# Large files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ipynb
+*.pt
+*.dat
+
+# Specific large files if not caught by patterns above
+# (though the patterns should cover them)
+# facenet/data/onet.pt
+# facenet/data/pnet.pt
+# facenet/data/rnet.pt
+# liveness_detection/landmarks/emotion_weights.pt
+# liveness_detection/landmarks/shape_predictor_68_face_landmarks.dat
+# verification_models/weights/vggface2_weights.pt
+# ID2.png
+# ID3.jpg
+# SAM_ID.png
+# facenet/data/facenet-pytorch-banner.png
+# facenet/data/multiface_detected.png
+# facenet/data/multiface.jpg
+# resources/ekyc.jpg
+# resources/flow.jpg
