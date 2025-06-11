@@ -74,7 +74,7 @@ function LivenessChallengePage({ onLivenessComplete, onBack }) {
 
   const fetchNextChallenge = useCallback(async () => {
     setIsLoading(true);
-    setFeedbackMessage('Loading next challenge...');
+    // setFeedbackMessage('Loading next challenge...'); // Removed this line
     await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     let nextChallengeType;

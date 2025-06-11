@@ -51,12 +51,13 @@ function IDCardUpload({ onNextPage }) {
       
       const simulateSuccess = true;
       let data;
+      // This is the placeholder that should be visible (50x50 blue square)
+      const visiblePlaceholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABFSURBVChTY2RgYNgHxMzAgAFgDjI2NnY2BgYGBkYGFmY2BlYGFmY2BgYGFmY2BlYGFmY2BgYGFmY2BlYGFmY2BgYGFmY2BgYGAHw6D4s8NBJzAAAAAElFTkSuQmCC"; 
+      
       if (simulateSuccess) {
-        // Use a self-contained, visible placeholder for the detected face (50x50 blue square)
-        const detectedFacePlaceholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABFSURBVChTY2RgYNgHxMzAgAFgDjI2NnY2BgYGBkYGFmY2BlYGFmY2BgYGFmY2BlYGFmY2BgYGFmY2BlYGFmY2BgYGFmY2BgYGAHw6D4s8NBJzAAAAAElFTkSuQmCC"; 
         data = { 
           success: true, 
-          faceImageUrl: detectedFacePlaceholder, 
+          faceImageUrl: visiblePlaceholder, 
           message: 'Face detected successfully.' 
         };
       } else {
@@ -72,7 +73,7 @@ function IDCardUpload({ onNextPage }) {
       console.log('[extractFaceFromAPI] Condition (data.success && data.faceImageUrl) is:', conditionMet);
 
       if (conditionMet) {
-        setDetectedFacePreview(data.faceImageUrl);
+        setDetectedFacePreview(data.faceImageUrl); // Should set to blue square
         setIsFaceDetected(true);
         console.log('[extractFaceFromAPI] setIsFaceDetected(true) called.');
       } else {
@@ -125,14 +126,22 @@ function IDCardUpload({ onNextPage }) {
         {/* Temporary button for simulation */}
         <button
           onClick={() => {
+            console.log('[Simulate Button Clicked]');
             const mockFile = new File(["dummy"], "dummy.jpg", { type: "image/jpeg" });
-            setSelectedIdImage(mockFile);
-            const placeholderImageUrl = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-            setIdImagePreview(placeholderImageUrl);
-            setDetectedFacePreview('');
+            const blueSquarePlaceholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABFSURBVChTY2RgYNgHxMzAgAFgDjI2NnY2BgYGBkYGFmY2BlYGFmY2BgYGFmY2BlYGFmY2BgYGFmY2BlYGFmY2BgYGFmY2BgYGAHw6D4s8NBJzAAAAAElFTkSuQmCC";
+            
+            // For diagnostics, set both previews to the same visible placeholder
+            setIdImagePreview(blueSquarePlaceholder); 
+            // setDetectedFacePreview(blueSquarePlaceholder); // Will be set by extractFaceFromAPI
+            // setIsFaceDetected(true); // Will be set by extractFaceFromAPI
+
+            // Reset other states
+            setDetectedFacePreview(''); // Clear previous detected face first
             setIsFaceDetected(false);
             setErrorMessage('');
-            extractFaceFromAPI(mockFile, placeholderImageUrl);
+            
+            // Call extractFaceFromAPI, which will also use blueSquarePlaceholder for detected face in simulation
+            extractFaceFromAPI(mockFile, blueSquarePlaceholder); 
           }}
           style={{ marginLeft: '10px', padding: '10px', backgroundColor: 'orange' }}
         >
