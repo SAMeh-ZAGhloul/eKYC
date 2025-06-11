@@ -1,69 +1,195 @@
-.liveness-challenge-container {
+.liveness-challenge-container.new-ui-liveness {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  max-width: 800px;
+  padding: 15px; /* Adjusted padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #ffffff; /* Cleaner background */
+  max-width: 400px; /* More mobile-like width */
+  min-height: 600px; /* Typical mobile screen height */
   margin: 20px auto;
   text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.liveness-challenge-container h2 {
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.feedback-message {
-  color: #0066CC; /* Blue for instructions/feedback */
-  font-size: 1.2em; /* Larger for challenge text */
-  font-weight: bold;
-  margin-bottom: 15px;
-  min-height: 2.5em; /* Ensure space for longer messages */
-  padding: 10px;
-  background-color: rgba(220, 235, 255, 0.7); /* Light blueish background */
-  border-radius: 5px;
-  width: 90%;
-  max-width: 600px;
-}
-
-.camera-feed-container-liveness {
-  width: 80%;
-  max-width: 500px; /* Max width for camera feed */
-  border: 1px dashed #ddd;
-  padding: 10px;
-  background-color: #fff;
-  margin-bottom: 20px;
-}
-
-.camera-video-liveness {
+.liveness-header {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: auto;
-  border-radius: 4px;
-  background-color: #000;
+  padding: 10px 0; /* Padding for header */
+  margin-bottom: 20px;
+  position: relative; /* For absolute positioning of back arrow if needed */
 }
 
-/* Reusing some button styles if they are globally defined or from App.css */
-/* Assuming .navigation-buttons, .button-back, .button-next, .loading-message, .error-message are similar */
-/* Add .button-action specific style if needed */
-.button-action {
-  background-color: #ff9800; /* Orange for action */
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
+.back-arrow {
+  background: none;
   border: none;
-  border-radius: 5px;
+  font-size: 24px; /* Larger arrow */
+  color: #555;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 5px 10px;
+  position: absolute; /* Position to the left */
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.back-arrow:disabled {
+  color: #ccc;
 }
 
-.button-action:hover {
-  background-color: #f57c00;
+.liveness-title {
+  font-size: 1.2em; /* Adjusted size */
+  font-weight: 600; /* Semibold */
+  color: #333;
+  text-align: center;
+  flex-grow: 1; /* Allow title to take space and center */
+  margin-right: 30px; /* Space for back arrow if it were inline */
 }
 
-.button-action:disabled {
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin-bottom: 25px;
+}
+
+.step-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0; /* Default gray */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9em;
+  border: 2px solid #e0e0e0;
+}
+
+.step-circle.active {
+  background-color: #007bff; /* Blue for active */
+  border-color: #007bff;
+}
+
+.step-circle.completed {
+  background-color: #28a745; /* Green for completed */
+  border-color: #28a745;
+}
+
+.step-line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #e0e0e0; /* Gray line */
+}
+.step-circle.completed + .step-line {
+    background-color: #28a745; /* Green line after completed step */
+}
+
+
+.face-recognition-subtitle {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.challenge-instruction-text {
+  font-size: 1.2em; /* Larger instruction */
+  color: #28a745; /* Green text as per mockup */
+  font-weight: 500; /* Medium weight */
+  margin-bottom: 20px;
+  min-height: 2.5em;
+}
+
+.circular-visualizer-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px dashed #ccc;
+  display: flex;
+  flex-direction: column; /* To stack p and video */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  position: relative; /* For video overlay */
+  background-color: #f0f0f0;
+}
+.circular-visualizer-placeholder p {
+    color: #aaa;
+    font-size: 0.8em;
+    position: absolute; /* So it doesn't interfere with video size */
+}
+
+.camera-video-liveness { /* Now inside placeholder */
+  width: 180px; /* Slightly smaller than placeholder */
+  height: 180px;
+  border-radius: 50%; /* Make video circular */
+  object-fit: cover; /* Ensure video fills the circle */
+}
+
+.liveness-navigation-buttons {
+  display: flex;
+  flex-direction: column; /* Stack buttons */
+  align-items: center;
+  width: 100%;
+  padding: 0 20px; /* Padding for button area */
+  margin-top: auto; /* Push to bottom */
+}
+
+.liveness-navigation-buttons button {
+  width: 100%;
+  max-width: 300px; /* Max button width */
+  padding: 12px 20px;
+  font-size: 1.1em; /* Larger text */
+  font-weight: 500;
+  border-radius: 8px; /* More rounded */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px; /* Space between buttons if multiple */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.liveness-navigation-buttons button:last-child {
+  margin-bottom: 0;
+}
+
+
+.button-retry {
+  background-color: #fff;
+  color: #28a745; /* Green text */
+  border: 1px solid #28a745; /* Green border */
+}
+.button-retry:hover {
+  background-color: #f0fff0; /* Light green tint */
+}
+
+.button-continue { /* Was .button-next */
+  background-color: #28a745; /* Green background */
+  color: white;
+  border: none;
+}
+.button-continue:hover {
+  background-color: #218838; /* Darker green */
+}
+.button-continue:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Feedback messages (reusing from other CSS but can be specific) */
+.feedback-message { /* This is for the main challenge instruction, styled above as .challenge-instruction-text */
+  /* If feedbackMessage state is used for other messages, style them here or inline */
+}
+.loading-message {
+  font-style: italic;
+  color: #007bff;
+  margin: 10px 0;
+}
+.error-message {
+  color: #dc3545;
+  font-weight: bold;
+  margin: 10px 0;
 }
