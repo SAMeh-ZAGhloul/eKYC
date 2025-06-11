@@ -1,0 +1,69 @@
+.liveness-challenge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.liveness-challenge-container h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.feedback-message {
+  color: #0066CC; /* Blue for instructions/feedback */
+  font-size: 1.2em; /* Larger for challenge text */
+  font-weight: bold;
+  margin-bottom: 15px;
+  min-height: 2.5em; /* Ensure space for longer messages */
+  padding: 10px;
+  background-color: rgba(220, 235, 255, 0.7); /* Light blueish background */
+  border-radius: 5px;
+  width: 90%;
+  max-width: 600px;
+}
+
+.camera-feed-container-liveness {
+  width: 80%;
+  max-width: 500px; /* Max width for camera feed */
+  border: 1px dashed #ddd;
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.camera-video-liveness {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  background-color: #000;
+}
+
+/* Reusing some button styles if they are globally defined or from App.css */
+/* Assuming .navigation-buttons, .button-back, .button-next, .loading-message, .error-message are similar */
+/* Add .button-action specific style if needed */
+.button-action {
+  background-color: #ff9800; /* Orange for action */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-action:hover {
+  background-color: #f57c00;
+}
+
+.button-action:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

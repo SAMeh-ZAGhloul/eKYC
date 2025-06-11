@@ -15,14 +15,23 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px; /* Added padding */
+  display: flex; /* Kept for centering title if needed, or can be simpler */
+  flex-direction: column; /* Or row if title is beside other elements */
+  align-items: center; /* Centers h1 if it's the only child */
+  justify-content: center; /* Centers h1 */
+  font-size: calc(10px + 2vmin); /* Can be adjusted */
   color: white;
+  /* min-height: 100vh; Removed */
+  /* Consider adding a fixed height or just let content define it */
+  /* e.g., height: 60px; or remove display:flex props if not needed for complex header */
 }
+
+/* Ensure main content is visible below the header */
+/* This might not be strictly necessary if App-header height is not excessive */
+/* .App main {
+  padding-top: 20px; /* Adjust based on header height if header is fixed/absolute */
+/* } */
 
 .App-link {
   color: #61dafb;
